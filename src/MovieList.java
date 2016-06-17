@@ -12,6 +12,8 @@ public class MovieList {
 		String option;
 		String proceed = "yes";
 
+		// my add movie code
+
 		/*
 		 * Movie shawshank = new Movie("Shawshank Redemption", "Drama"); Movie
 		 * clerks = new Movie("Clerks", "Comedy"); Movie clerks2 = new
@@ -32,32 +34,41 @@ public class MovieList {
 		 * movieList.add(empireStrikes);
 		 */
 
+		// add GC movielist
+
 		for (int i = 0; i < 100; i++) {
-			movieList.add(i, MoviesIO.getMovie(i));
+			movieList.add(MoviesIO.getMovie(i));
 		}
 
-		// sort
+		// sort code i stole from internet
 		Collections.sort(movieList, new Comparator<Movie>() {
 			public int compare(Movie m1, Movie m2) {
 				return m1.getTitle().compareToIgnoreCase(m2.getTitle());
 			}
 		});
 
+		// prompt
+		System.out.println("Welcome to the Move List Application");
+		System.out.println("There are 100 movies in ths list");
 		do {
-			System.out.println("Welcome to the Move List Application");
-			System.out.println("There are 100 movies in ths list");
 			System.out.print("What category are you interested in?");
 			option = scan.nextLine();
 
 			System.out.println();
 
+			// enhanced loop movies outputting titles
 			for (Movie s : movieList) {
 				if (s.getCategory().equals(option)) {
 					System.out.println(s.getTitle());
 				}
 			}
-		} while (Character.toLowerCase(proceed.charAt(0)) == 'p');
 
+			System.out.print("\nContinue?(y/n)");
+			proceed = scan.nextLine();
+			System.out.println();
+
+		} while (Character.toLowerCase(proceed.charAt(0)) == 'y');
+		System.out.println("Goodbye");
 		scan.close();
 	}
 }
